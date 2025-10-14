@@ -1,0 +1,90 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Build outputs
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+
+# Maven wrapper - ensure wrapper files are tracked for reproducible builds
+!/.mvn/wrapper/maven-wrapper.jar
+!/.mvn/wrapper/maven-wrapper.properties
+
+# JVM / Maven reports
+surefire-reports/
+failsafe-reports/
+dependency-reduced-pom.xml
+release.properties
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+*.log
+
+# IntelliJ IDEA - ignore metadata but keep repository helper
+.idea/
+!.idea/.gitignore
+*.iws
+*.iml
+*.ipr
+workspace.xml
+shelf/
+httpRequests/
+dataSources/
+dataSources.local.xml
+usage.statistics.xml
+
+# Ignore Copilot / other editor-specific xmls inside .idea explicitly (optional)
+.idea/copilot*.xml
+.idea/*copilot*.xml
+
+# STS / Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Environment / secrets
+.env
+.env.*
+secrets/
+*.secret
+*.key
+*.pem
+*.jks
+*.keystore
+
+# Logs / temp
+logs/
+hs_err_pid*
+nohup.out
+*.tmp
+*.temp
+
+# Docker / Compose local override
+docker-compose.override.yml
+docker-compose.*.local.yml
+.docker/
+
+# Editor backup files
+*~
+*.swp
+*.swo
