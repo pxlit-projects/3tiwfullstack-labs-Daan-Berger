@@ -10,9 +10,9 @@ public interface IEmployeeService {
 
     void addEmployee(EmployeeRequest employeeRequest);
 
-    EmployeeResponse getEmployeeById(Long id);
+    EmployeeResponse getEmployeeById(long id);
 
-    List<EmployeeResponse> getEmployeeByDepartmentId();
+    List<EmployeeResponse> getEmployeeByDepartmentId(long id);
 
-    List<EmployeeResponse> getEmployeeByOrganizationId();
+    List<EmployeeResponse> getEmployeeByOrganizationId(long id);
 }
