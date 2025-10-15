@@ -36,11 +36,11 @@ public class EmployeeController {
 
     @GetMapping("/department/{departmentId}")
     public ResponseEntity<List<EmployeeResponse>> getEmployeeByDepartmentId(@PathVariable long departmentId) {
-        return new ResponseEntity<>(employeeService.getEmployeeByDepartmentId(), HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.getEmployeeByDepartmentId(departmentId), HttpStatus.OK);
     }
     @GetMapping("/organization/{organizationId}")
     public ResponseEntity<List<EmployeeResponse>> getEmployeeByOrganizationId(@PathVariable long organizationId) {
-        return new ResponseEntity<>(employeeService.getEmployeeByOrganizationId(), HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.getEmployeeByOrganizationId(organizationId), HttpStatus.OK);
     }
 
 }
