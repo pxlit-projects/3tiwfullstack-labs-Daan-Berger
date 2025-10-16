@@ -1,7 +1,7 @@
 package be.pxl.services.services;
 
-import be.pxl.services.controller.dto.EmployeeRequest;
-import be.pxl.services.controller.dto.EmployeeResponse;
+import be.pxl.services.domain.dto.EmployeeRequest;
+import be.pxl.services.domain.dto.EmployeeResponse;
 import be.pxl.services.domain.Employee;
 import be.pxl.services.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;

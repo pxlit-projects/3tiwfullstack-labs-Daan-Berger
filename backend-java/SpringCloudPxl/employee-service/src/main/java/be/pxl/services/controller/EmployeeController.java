@@ -1,7 +1,7 @@
 package be.pxl.services.controller;
 
-import be.pxl.services.controller.dto.EmployeeRequest;
-import be.pxl.services.controller.dto.EmployeeResponse;
+import be.pxl.services.domain.dto.EmployeeRequest;
+import be.pxl.services.domain.dto.EmployeeResponse;
 import be.pxl.services.services.IEmployeeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +19,9 @@ public class EmployeeController {
     private final IEmployeeService employeeService;
 
     @PostMapping
-    public ResponseEntity<Void> addEmployee(@Valid @RequestBody EmployeeRequest employeeRequest) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addEmployee(@Valid @RequestBody EmployeeRequest employeeRequest) {
         employeeService.addEmployee(employeeRequest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
