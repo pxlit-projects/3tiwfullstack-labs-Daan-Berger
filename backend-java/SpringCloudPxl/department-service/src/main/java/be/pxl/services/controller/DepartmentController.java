@@ -2,6 +2,7 @@ package be.pxl.services.controller;
 
 import be.pxl.services.domain.dto.DepartmentRequest;
 import be.pxl.services.domain.dto.DepartmentResponse;
+import be.pxl.services.domain.dto.DepartmentResponseWithEmployees;
 import be.pxl.services.services.IDepartmentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +40,7 @@ public class DepartmentController {
     }
 
     @GetMapping("organization/{organizationId}/with-employees")
-    public ResponseEntity<List<DepartmentResponse>> getDepartmentsByOrganizationWithEmployees(@PathVariable long organizationId) {
+    public ResponseEntity<List<DepartmentResponseWithEmployees>> getDepartmentsByOrganizationWithEmployees(@PathVariable long organizationId) {
         return new ResponseEntity<>(departmentService.getAllDepartmentsByOrganizationWithEmployees(organizationId), HttpStatus.OK);
     }
 }
