@@ -17,9 +17,10 @@ public class DepartmentService implements IDepartmentService{
 
     @Override
     public void addDepartment(DepartmentRequest departmentRequest) {
+
         List<Employee> employees = departmentRequest.getEmployees()
                 .stream()
-                .map(this::mapToEmployee)
+                .map(eReq -> mapToEmployee(eReq, departmentRequest.getOrganizationId()))
                 .toList();
 
         Department department = Department.builder()
@@ -28,6 +29,8 @@ public class DepartmentService implements IDepartmentService{
                 .employees(employees)
                 .position(departmentRequest.getPosition())
                 .build();
+
+        employees.forEach(e -> e.setDepartment(department));
 
         departmentRepository.save(department);
     }
@@ -58,7 +61,7 @@ public class DepartmentService implements IDepartmentService{
 
     @Override
     public List<DepartmentResponseWithEmployees> getAllDepartmentsByOrganizationWithEmployees(long id) {
-        List<Department> departments = departmentRepository.findByOrganizationId(id);
+        List<Department> departments = departmentRepository.findByOrganizationIdWithEmployees(id);
         return departments
                 .stream()
                 .map(this::mapToDepartmentResponseWithEmployees)
@@ -78,7 +81,7 @@ public class DepartmentService implements IDepartmentService{
         List<EmployeeResponse> employeeResponse = department.getEmployees()
                 .stream()
                 .map(e -> new EmployeeResponse(
-                        e.getId(), e.getOrganizationId(), e.getName(), e.getAge(), e.getPosition())
+                        e.getId(), e.getName(), e.getAge(), e.getPosition())
                 ).toList();
 
         return DepartmentResponseWithEmployees.builder()
@@ -90,9 +93,9 @@ public class DepartmentService implements IDepartmentService{
                 .build();
     }
 
-    private Employee mapToEmployee(EmployeeRequest employeeRequest) {
+    private Employee mapToEmployee(EmployeeRequest employeeRequest, long organizationId) {
         return Employee.builder()
-                .organizationId(employeeRequest.getOrganizationId())
+                .organizationId(organizationId)
                 .name(employeeRequest.getName())
                 .age(employeeRequest.getAge())
                 .position(employeeRequest.getPosition())

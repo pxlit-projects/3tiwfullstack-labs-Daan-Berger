@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeRequest {
-    private Long organizationId;
     private String name;
     private Integer age;
     private String position;
