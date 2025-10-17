@@ -2,6 +2,7 @@ package be.pxl.services.services;
 
 import be.pxl.services.domain.dto.DepartmentRequest;
 import be.pxl.services.domain.dto.DepartmentResponse;
+import be.pxl.services.domain.dto.DepartmentResponseWithEmployees;
 
 import java.util.List;
 
@@ -14,5 +15,5 @@ public interface IDepartmentService {
 
     List<DepartmentResponse> getAllDepartmentsByOrganization(long id);
 
-    List<DepartmentResponse> getAllDepartmentsByOrganizationWithEmployees(long id);
+    List<DepartmentResponseWithEmployees> getAllDepartmentsByOrganizationWithEmployees(long id);
 }
