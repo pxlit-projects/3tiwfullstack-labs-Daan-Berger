@@ -4,6 +4,8 @@ import be.pxl.services.domain.Department;
 import be.pxl.services.domain.Employee;
 import be.pxl.services.domain.dto.*;
 import be.pxl.services.repository.DepartmentRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ public class DepartmentService implements IDepartmentService{
     private final DepartmentRepository departmentRepository;
 
     @Override
+    @Transactional
     public void addDepartment(DepartmentRequest departmentRequest) {
 
         List<Employee> employees = departmentRequest.getEmployees()
@@ -36,12 +39,15 @@ public class DepartmentService implements IDepartmentService{
     }
 
     @Override
+    @Transactional
     public DepartmentResponse getDepartmentById(long id) {
-        Department department = departmentRepository.findById(id).get();
+        Department department = departmentRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("department not found"));
         return mapToDepartmentResponse(department);
     }
 
     @Override
+    @Transactional
     public List<DepartmentResponse> getAllDepartments() {
         List<Department> departments = departmentRepository.findAll();
         return departments.
@@ -51,6 +57,7 @@ public class DepartmentService implements IDepartmentService{
     }
 
     @Override
+    @Transactional
     public List<DepartmentResponse> getAllDepartmentsByOrganization(long id) {
         List<Department> departments = departmentRepository.findByOrganizationId(id);
         return departments
@@ -60,8 +67,9 @@ public class DepartmentService implements IDepartmentService{
     }
 
     @Override
+    @Transactional
     public List<DepartmentResponseWithEmployees> getAllDepartmentsByOrganizationWithEmployees(long id) {
-        List<Department> departments = departmentRepository.findByOrganizationIdWithEmployees(id);
+        List<Department> departments = departmentRepository.findByOrganizationId(id);
         return departments
                 .stream()
                 .map(this::mapToDepartmentResponseWithEmployees)
