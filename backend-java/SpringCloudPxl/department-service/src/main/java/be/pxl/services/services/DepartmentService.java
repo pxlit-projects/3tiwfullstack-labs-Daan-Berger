@@ -39,7 +39,6 @@ public class DepartmentService implements IDepartmentService{
     }
 
     @Override
-    @Transactional
     public DepartmentResponse getDepartmentById(long id) {
         Department department = departmentRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("department not found"));
@@ -47,7 +46,6 @@ public class DepartmentService implements IDepartmentService{
     }
 
     @Override
-    @Transactional
     public List<DepartmentResponse> getAllDepartments() {
         List<Department> departments = departmentRepository.findAll();
         return departments.
@@ -60,6 +58,7 @@ public class DepartmentService implements IDepartmentService{
     @Transactional
     public List<DepartmentResponse> getAllDepartmentsByOrganization(long id) {
         List<Department> departments = departmentRepository.findByOrganizationId(id);
+
         return departments
                 .stream()
                 .map(this::mapToDepartmentResponse)
@@ -70,6 +69,7 @@ public class DepartmentService implements IDepartmentService{
     @Transactional
     public List<DepartmentResponseWithEmployees> getAllDepartmentsByOrganizationWithEmployees(long id) {
         List<Department> departments = departmentRepository.findByOrganizationId(id);
+
         return departments
                 .stream()
                 .map(this::mapToDepartmentResponseWithEmployees)

@@ -4,6 +4,7 @@ import be.pxl.services.domain.dto.EmployeeRequest;
 import be.pxl.services.domain.dto.EmployeeResponse;
 import be.pxl.services.domain.Employee;
 import be.pxl.services.repository.EmployeeRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,8 @@ public class EmployeeService implements IEmployeeService{
         return employeeRepository.findById(id)
                 .stream()
                 .map(EmployeeResponse::new)
-                .findAny().get();
+                .findAny()
+                .orElseThrow(() -> new EntityNotFoundException("employee not found"));
     }
 
     @Override
