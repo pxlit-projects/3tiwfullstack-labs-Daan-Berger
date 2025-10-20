@@ -20,7 +20,7 @@ public class Department {
     private Long id;
     private Long organizationId;
     private String name;
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Transient
     private List<Employee> employees;
     private String position;
 }
