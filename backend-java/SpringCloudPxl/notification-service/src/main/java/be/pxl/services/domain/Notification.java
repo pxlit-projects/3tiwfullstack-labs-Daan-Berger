@@ -17,8 +17,8 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String from;
-    private String to;
+    private String sender;
+    private String recipient;
     private String subject;
     private String message;
 }
